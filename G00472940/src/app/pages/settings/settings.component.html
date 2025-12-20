@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Measurement units -->
+  <ion-list>
+    <ion-radio-group [(ngModel)]="measurement" (ionChange)="saveMeasurement()">
+      <ion-list-header>
+        <ion-label>Measurement Units</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Metric</ion-label>
+        <ion-radio slot="start" value="metric"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>US</ion-label>
+        <ion-radio slot="start" value="us"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <!-- Dark mode toggle -->
+  <ion-list>
+    <ion-item>
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle
+        slot="end"
+        [(ngModel)]="darkMode"
+        (ionChange)="toggleDarkMode()">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
