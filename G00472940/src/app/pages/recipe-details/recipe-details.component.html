@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+
+      <!--Back button to return to previous page -->
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <!--Title of the recipe. This is retrieved from the recipe object -->
+    <ion-title>{{ recipe?.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="recipe"> <!--Display content only if recipe data is available -->
+
+  <ion-img [src]="recipe.image"></ion-img> <!--Display the image of the recipe from spoonacular-->
+
+  <ion-list>
+    <ion-list-header>Ingredients</ion-list-header>
+    <ion-item *ngFor="let ing of ingredients"> <!--Iterate through the ingredients array and display each ingredient-->
+      <!--Display ingredient amount, unit, and name. Ing is the current ingredient being processed in the loop -->
+      {{ ing.amount }} {{ ing.unit }} - {{ ing.name }} 
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>Instructions</ion-list-header>
+    <ion-item *ngFor="let step of instructions"> <!--Iterate through the instructions array and display each step-->
+      <!--Display step number and description. Step is the current instruction being processed in the loop -->
+      Step {{ step.number }}: {{ step.step }}
+    </ion-item>
+  </ion-list>
+
+  <!--Button to add or remove recipe from favourites -->
+  <ion-button expand="block" color="secondary" (click)="toggleFavourite()"> <!--Calls toggleFavourite method on click-->
+    <!--Button text changes based on whether the recipe is a favourite or not i.e. the ? -->
+    {{ isFavourite ? 'Remove From Favourites' : 'Add To Favourites' }}
+    
+  </ion-button>
+
+</ion-content>
+
+<ion-content *ngIf="!recipe">
+  <!--Display loading message if recipe data is not yet available. Just a placeholder and makes it look a bit better -->
+  <p style="text-align:center; margin-top:20px;">Loading recipe...</p>
+</ion-content>

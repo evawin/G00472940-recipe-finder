@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from './services/storage.service';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-root',
   template: '<ion-router-outlet></ion-router-outlet>',
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, ]
 })
+
 export class AppComponent implements OnInit {
 
-  constructor(private storage: StorageService) {}
+  constructor(private storage: StorageService)
+  //StorageServe is used to access saved settings like dark mode
+   {}
 
   async ngOnInit() {
-    const dark = await this.storage.getDarkMode();
-    document.body.classList.toggle('dark', dark);
+    //When the app starts, load and apply dark mode setting
+    const dark = await this.storage.getDarkMode(); //Get saved dark mode preference
+    document.body.classList.toggle('dark', dark); //Apply dark mode if preference is true
+    
   }
 }
 

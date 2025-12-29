@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Favourites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="favourites.length > 0"> <!--Display list only if there are favourite recipes -->
+    <!--- ngIf will go through each favourite recipe and display it. Like iterating through will an if statment in java-->
+    <ion-item *ngFor="let fav of favourites"> <!--*ngFor is used to iterate through the favourites array and create an ion-item for each one -->
+      <ion-thumbnail slot="start"> <!--Thumbnail image of the favourite recipe. Retrived from spoonacular -->
+        <img [src]="fav.image" />
+      </ion-thumbnail>
+
+      <ion-label>
+        {{ fav.title }} <!--Display the title of the favourite recipe from the favourites array-->
+      </ion-label>
+
+      <ion-button fill="outline" (click)="openDetails(fav)"> <!--Button to open recipe details page. Calls openDetails method with the selected favourite recipe as argument -->
+        Details
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="favourites.length === 0" class="empty">
+    <!--Display message when no favourites are added. It iterates through the array of favourites using an ngIf. class="empty" is -->
+    <p>No favourites added yet.</p>
+  </div>
+</ion-content>
